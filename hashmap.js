@@ -1,4 +1,4 @@
-import {LinkedList} from "../linked-lists/linkedlist.js"
+import {LinkedList} from "linked-lists"
 
 class HashMap {
   static LOAD_FACTOR = 0.9;
