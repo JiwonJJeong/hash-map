@@ -1,8 +1,9 @@
-
+import {LinkedList} from "../linked-lists/linkedlist.js"
 
 class HashMap {
   static LOAD_FACTOR = 0.9;
   capacity =16;
+  buckets = new Array(capacity);
 
 // overrides JavaScript's dynamic increasing of array size
 // should be used whenever access bucket through index
