@@ -69,6 +69,13 @@ class HashMap {
 
   remove(key){
     const bucket = this.#getBucketFromKey(key);
+    const nodeIndex = bucket.find(key, "key");
+    if (nodeIndex != null){
+      bucket.removeAt(nodeIndex);
+      return true;
+    } else{
+      return false;
+    }
   }
 
   #getBucketFromKey(key){
