@@ -4,7 +4,7 @@ class HashMap {
   static LOAD_FACTOR = 0.9;
   capacity =16;
   loadLimit = this.LOAD_FACTOR * this.capacity;
-  entriesCount = 0;
+  #entriesCount = 0;
   buckets = new Array(capacity);
 
 // overrides JavaScript's dynamic increasing of array size
@@ -33,18 +33,18 @@ class HashMap {
     if (bucket == null){
       bucket = new LinkedList();
       bucket.append({key, value});  // the value of the linked list node is the key-value pair
-      entriesCount++;
+      this.#entriesCount++;
     } else {
       const listNode = bucket.find(key, "key");
       if (listNode == null){
         bucket.append({key, value});
-        entriesCount++;
+        this.#entriesCount++;
       } else{
         listNode.value.value = value;
       }
     }
     // doubles capacity if entries > capacity * loadfactor
-    if (entriesCount > loadLimit){
+    if (this.#entriesCount > loadLimit){
       // double capacity
     }
   }
@@ -72,10 +72,15 @@ class HashMap {
     const nodeIndex = bucket.find(key, "key");
     if (nodeIndex != null){
       bucket.removeAt(nodeIndex);
+      this.#entriesCount--;
       return true;
     } else{
       return false;
     }
+  }
+
+  length(){
+    return this.#entriesCount;
   }
 
   #getBucketFromKey(key){
