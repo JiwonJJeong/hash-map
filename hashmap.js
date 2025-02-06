@@ -29,9 +29,7 @@ class HashMap {
   }
 
   set(key, value){
-    const hash = hash(key);
-    this.checkIndex(hash);
-    const bucket = buckets[hash];
+    const bucket = this.#getBucketFromKey(key);
     if (bucket == null){
       bucket = new LinkedList();
       bucket.append({key, value});  // the value of the linked list node is the key-value pair
@@ -52,9 +50,7 @@ class HashMap {
   }
 
   get(key){
-    const hash = hash(key);
-    this.checkIndex(hash);
-    const bucket = buckets[hash]
+    const bucket = this.#getBucketFromKey(key);
     if (bucket == null){
       return null;
     } else{
@@ -63,14 +59,22 @@ class HashMap {
   }
 
   has(key){
-    const hash = hash(key);
-    this.checkIndex(hash);
-    const bucket = buckets[hash]
+    const bucket = this.#getBucketFromKey(key);
     if (bucket == null){
       return false;
     } else{
       return bucket.contains(key, "key");
     }
+  }
+
+  remove(key){
+    const bucket = this.#getBucketFromKey(key);
+  }
+
+  #getBucketFromKey(key){
+    const hash = hash(key);
+    this.checkIndex(hash);
+    return bucket = buckets[hash];
   }
 
 }
