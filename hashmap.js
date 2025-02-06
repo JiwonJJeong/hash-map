@@ -51,5 +51,29 @@ class HashMap {
     }
   }
 
+  get(key){
+    const hash = hash(key);
+    this.checkIndex(hash);
+    const bucket = buckets[hash]
+    if (bucket == null){
+      return null;
+    } else{
+      return bucket.findNode(key, "key").value;
+    }
+  }
+
+  has(key){
+    const hash = hash(key);
+    this.checkIndex(hash);
+    const bucket = buckets[hash]
+    if (bucket == null){
+      return false;
+    } else{
+      return bucket.contains(key, "key");
+    }
+  }
+
 }
+
+export {HashMap};
 
