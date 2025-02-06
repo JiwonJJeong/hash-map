@@ -3,6 +3,8 @@ import {LinkedList} from "linked-lists"
 class HashMap {
   static LOAD_FACTOR = 0.9;
   capacity =16;
+  loadLimit = this.LOAD_FACTOR * this.capacity;
+  entriesCount = 0;
   buckets = new Array(capacity);
 
 // overrides JavaScript's dynamic increasing of array size
@@ -24,6 +26,29 @@ class HashMap {
     }
  
     return hashCode;
+  }
+
+  set(key, value){
+    const hash = hash(key);
+    this.checkIndex(hash);
+    const bucket = buckets[hash];
+    if (bucket == null){
+      bucket = new LinkedList();
+      bucket.append({key, value});  // the value of the linked list node is the key-value pair
+      entriesCount++;
+    } else {
+      const listNode = bucket.find(key, "key");
+      if (listNode == null){
+        bucket.append({key, value});
+        entriesCount++;
+      } else{
+        listNode.value.value = value;
+      }
+    }
+    // doubles capacity if entries > capacity * loadfactor
+    if (entriesCount > loadLimit){
+      // double capacity
+    }
   }
 
 }
