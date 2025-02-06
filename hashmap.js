@@ -2,15 +2,15 @@ import {LinkedList} from "linked-lists"
 
 class HashMap {
   static LOAD_FACTOR = 0.9;
-  capacity =16;
-  loadLimit = this.LOAD_FACTOR * this.capacity;
+  #capacity =16;
+  #loadLimit = this.LOAD_FACTOR * this.#capacity;
   #entriesCount = 0;
-  buckets = new Array(capacity);
+  #buckets = new Array(this.#capacity);
 
 // overrides JavaScript's dynamic increasing of array size
 // should be used whenever access bucket through index
  checkIndex(index){
-  if (index < 0 || index >= buckets.length) {
+  if (index < 0 || index >= this.#buckets.length) {
     throw new Error("Trying to access index out of bounds");
   }
 }
@@ -19,12 +19,10 @@ class HashMap {
 // takes modulo to prevent integer overflow AND limits hashCode to bucket length
   hash(key){
     let hashCode = 0;
-      
     const primeNumber = 31;
     for (let i = 0; i < key.length; i++) {
-      hashCode = (primeNumber * hashCode + key.charCodeAt(i))%capacity;
+      hashCode = (primeNumber * hashCode + key.charCodeAt(i))%(this.#capacity);
     }
- 
     return hashCode;
   }
 
@@ -43,9 +41,9 @@ class HashMap {
         listNode.value.value = value;
       }
     }
-    // doubles capacity if entries > capacity * loadfactor
-    if (this.#entriesCount > loadLimit){
-      // double capacity
+    // doubles #capacity if entries > #capacity * loadfactor
+    if (this.#entriesCount > this.#loadLimit){
+      // double #capacity
     }
   }
 
@@ -83,10 +81,14 @@ class HashMap {
     return this.#entriesCount;
   }
 
+  clear(){
+
+  }
+
   #getBucketFromKey(key){
     const hash = hash(key);
     this.checkIndex(hash);
-    return bucket = buckets[hash];
+    return bucket = this.#buckets[hash];
   }
 
 }
