@@ -1,7 +1,7 @@
 import {LinkedList} from "linked-lists"
 
 class HashMap {
-  static LOAD_FACTOR = 0.9;
+  static LOAD_FACTOR = 0.75;
   #capacity =16;
   #loadLimit = this.LOAD_FACTOR * this.#capacity;
   #entriesCount = 0;
