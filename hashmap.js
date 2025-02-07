@@ -27,7 +27,7 @@ class HashMap {
   }
 
   set(key, value){
-    const bucket = this.#getBucketFromKey(key);
+    let bucket = this.#getBucketFromKey(key);
     if (bucket == null){
       bucket = new LinkedList();
       bucket.append({key, value});  // the value of the linked list node is the key-value pair
@@ -79,6 +79,9 @@ class HashMap {
 
   remove(key){
     const bucket = this.#getBucketFromKey(key);
+    if (bucket == undefined){
+      return false;
+    }
     const nodeIndex = bucket.find(key, "key");
     if (nodeIndex != null){
       bucket.removeAt(nodeIndex);
@@ -102,7 +105,10 @@ class HashMap {
   keys(){
     let keys = [];
     for (let bucket of this.#buckets){
-      let node = bucket.head();
+      let node = null;
+      if (bucket != undefined){
+        node = bucket.head();
+      }
       while (node != null){
         keys.push(node.value.key);
         node = node.nextNode;
@@ -115,7 +121,10 @@ class HashMap {
   values(){
     let values = [];
     for (let bucket of this.#buckets){
-      let node = bucket.head();
+      let node = null;
+      if (bucket != undefined){
+        node = bucket.head();
+      }
       while (node != null){
         keys.push(node.value.value);
         node = node.nextNode;
@@ -128,7 +137,10 @@ class HashMap {
   entries(){
     let entries = [];
     for (let bucket of this.#buckets){
-      let node = bucket.head();
+      let node = null;
+      if (bucket != undefined){
+        node = bucket.head();
+      }
       while (node != null){
         let keyValuePair = [2];
         keyValuePair[0] = node.value.key;
@@ -137,13 +149,13 @@ class HashMap {
         node = node.nextNode;
       }
     }
-    return values;
+    return entries;
   }
 
   #getBucketFromKey(key){
-    const hash = hash(key);
+    const hash = this.hash(key);
     this.checkIndex(hash);
-    return bucket = this.#buckets[hash];
+    return this.#buckets[hash];
   }
 
 }
