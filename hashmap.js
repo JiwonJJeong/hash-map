@@ -82,7 +82,50 @@ class HashMap {
   }
 
   clear(){
+    this.#buckets = new Array(this.#capacity);
+    return;
+  }
 
+  // return array of each key
+  keys(){
+    let keys = [];
+    for (let bucket of this.#buckets){
+      let node = bucket.head();
+      while (node != null){
+        keys.push(node.value.key);
+        node = node.nextNode;
+      }
+    }
+    return keys;
+  }
+
+  // return array of each value
+  values(){
+    let values = [];
+    for (let bucket of this.#buckets){
+      let node = bucket.head();
+      while (node != null){
+        keys.push(node.value.value);
+        node = node.nextNode;
+      }
+    }
+    return values;
+  }
+
+  // return array of each key value pair as [[key,value],[key,value]...]
+  entries(){
+    let entries = [];
+    for (let bucket of this.#buckets){
+      let node = bucket.head();
+      while (node != null){
+        let keyValuePair = [2];
+        keyValuePair[0] = node.value.key;
+        keyValuePair[1] = node.value.value;
+        entries.push(keyValuePair);
+        node = node.nextNode;
+      }
+    }
+    return values;
   }
 
   #getBucketFromKey(key){
