@@ -16,3 +16,23 @@ test.set('kite', 'pink')
 test.set('lion', 'golden')
 
 console.log(test.keys());
+
+test.set("hat", "new black");
+test.set("kite", "new pink");
+
+console.log(test.length()); // 12
+
+test.set("moon", "silver");
+
+console.log(test.get("frog")); // green
+console.log(test.get("kite")); // new pink
+
+test.remove("elephant");
+test.remove("apple");
+test.remove("banana");
+console.log(test.has("elephant")); // false
+console.log(test.has("hat")); // true
+
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
