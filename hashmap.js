@@ -43,7 +43,19 @@ class HashMap {
     }
     // doubles #capacity if entries > #capacity * loadfactor
     if (this.#entriesCount > this.#loadLimit){
-      // double #capacity
+      this.#capacity *= 2;
+      this.#loadLimit = this.LOAD_FACTOR * this.#capacity;
+      this.#entriesCount ==0;
+      this.#rehash();
+      this.set(key,value);
+    }
+  }
+
+  #rehash(){
+    const entries = this.entries();
+    this.#buckets = new Array(this.#capacity);
+    for (let [key,value] of entries){
+      this.set(key,value);
     }
   }
 
