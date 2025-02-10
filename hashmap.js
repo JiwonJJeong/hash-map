@@ -27,15 +27,15 @@ class HashMap {
   }
 
   set(key, value){
-    let bucket = this.#getBucketFromKey(key);
-    if (bucket == null){
-      bucket = new LinkedList();
-      bucket.append({key, value});  // the value of the linked list node is the key-value pair
+    const bucketIndex = this.#getBucketIndexFromKey(key);
+    if (this.#buckets[bucketIndex] === undefined){
+      this.#buckets[bucketIndex] = new LinkedList();  // must set new LinkedList to array, not bucket (a reference)
+      this.#buckets[bucketIndex].append({key, value});  // the value of the linked list node is the key-value pair
       this.#entriesCount++;
     } else {
-      const listNode = bucket.find(key, "key");
+      const listNode = this.#buckets[bucketIndex].findNode(key, "key");
       if (listNode == null){
-        bucket.append({key, value});
+        this.#buckets[bucketIndex].append({key, value});
         this.#entriesCount++;
       } else{
         listNode.value.value = value;
@@ -60,7 +60,7 @@ class HashMap {
   }
 
   get(key){
-    const bucket = this.#getBucketFromKey(key);
+    const bucket = this.#buckets[this.#getBucketIndexFromKey(key)];
     if (bucket == null){
       return null;
     } else{
@@ -69,7 +69,7 @@ class HashMap {
   }
 
   has(key){
-    const bucket = this.#getBucketFromKey(key);
+    const bucket = this.#buckets[this.#getBucketIndexFromKey(key)];
     if (bucket == null){
       return false;
     } else{
@@ -78,7 +78,7 @@ class HashMap {
   }
 
   remove(key){
-    const bucket = this.#getBucketFromKey(key);
+    const bucket = this.#buckets[this.#getBucketIndexFromKey(key)];
     if (bucket == undefined){
       return false;
     }
@@ -126,7 +126,7 @@ class HashMap {
         node = bucket.head();
       }
       while (node != null){
-        keys.push(node.value.value);
+        values.push(node.value.value);
         node = node.nextNode;
       }
     }
@@ -152,10 +152,10 @@ class HashMap {
     return entries;
   }
 
-  #getBucketFromKey(key){
+  #getBucketIndexFromKey(key){
     const hash = this.hash(key);
     this.checkIndex(hash);
-    return this.#buckets[hash];
+    return hash;
   }
 
 }
