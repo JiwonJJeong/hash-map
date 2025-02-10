@@ -20,7 +20,7 @@ console.log(test.keys());
 test.set("hat", "new black");
 test.set("kite", "new pink");
 
-console.log(test.length()); // 12
+console.log(test.length()); // 14
 
 test.set("moon", "silver");
 
