@@ -15,14 +15,18 @@ test.set('jacket', 'blue')
 test.set('kite', 'pink')
 test.set('lion', 'golden')
 
-console.log(test.keys());
+console.log(test.keys()); // should have array of 12 keys
 
 test.set("hat", "new black");
 test.set("kite", "new pink");
 
-console.log(test.length()); // 14
+console.log(test.values()); // should have array of 12 values (testing overwriting same key)
+
+console.log(test.length()); // 12
 
 test.set("moon", "silver");
+
+console.log(test.keys());; // array of 13 keys
 
 console.log(test.get("frog")); // green
 console.log(test.get("kite")); // new pink
@@ -33,6 +37,4 @@ test.remove("banana");
 console.log(test.has("elephant")); // false
 console.log(test.has("hat")); // true
 
-console.log(test.keys());
-console.log(test.values());
-console.log(test.entries());
+console.log(test.entries()); // array of 10 key value pairs
