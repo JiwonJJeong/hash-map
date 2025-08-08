@@ -2,7 +2,7 @@
 The Odin Project JS project to implement own hash map class.
 
 ## Hash Map Functions
-*Descriptions From The Odin Project*
+*Descriptions From [The Odin Project](https://www.theodinproject.com/lessons/javascript-hashmap)*
 - hash(key) takes a key and produces a hash code with it.
 - has(key) takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
 - remove(key) takes a key as an argument. If the given key is in the hash map, it should remove the entry with that key and return true. If the key isn’t in the hash map, it should return false.
@@ -12,10 +12,9 @@ The Odin Project JS project to implement own hash map class.
 - values() returns an array containing all the values.
 - entries() returns an array that contains each key, value pair.
 
-## Skills Used
-- Write hash map data structure with ES6 class syntax
-- Use private fields to control variable and method access
-- Use npm to package and import linked list project
+## Achieved Learning Goals
+- **Familiarity with Hash Maps**: Authored data structure and methods with ES6 class syntax from near scratch
+- **Creating npm packages**: Created and imported [linked list project](https://github.com/JiwonJJeong/linked-lists) to reduce code redundancy.
 
 ## Lessons Learned
 - A reference to an object does not update when the original object gets updated
