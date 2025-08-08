@@ -16,5 +16,5 @@ The Odin Project JS project to implement own hash map class.
 - **Familiarity with Hash Maps**: Authored data structure and methods with ES6 class syntax from near scratch
 - **Creating npm packages**: Created and imported [linked list project](https://github.com/JiwonJJeong/linked-lists) to reduce code redundancy.
 
-## Lessons Learned
+## Personal Takeaways
 - A reference to an object does not update when the original object gets updated
